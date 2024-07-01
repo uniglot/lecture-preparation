@@ -36,4 +36,4 @@ COPY ./application /app
 ARG DJANGO_SETTINGS
 ENV DJANGO_SETTINGS=$DJANGO_SETTINGS
 
-CMD [ "/bin/bash", "-c", "python manage.py migrate && gunicorn config.wsgi:application --bind 0.0.0.0:8000"]
+CMD [ "/bin/bash", "-c", "python manage.py collectstatic --no-input && python manage.py migrate && gunicorn config.wsgi:application -b 0.0.0.0:8000"]

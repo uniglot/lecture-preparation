@@ -43,9 +43,6 @@ workload:
 
 secret:
   name: fastcampus-app-secret
-  body:
-    key1: asdf
-    key2: fdsa
 
 autoscaling:
   enabled: false
@@ -60,7 +57,9 @@ service:
 ingress:
   enabled: true
   annotations:
-    Kubernetes.io/ingress.class: nginx
+    kubernetes.io/ingress.class: alb
+    alb.ingress.kubernetes.io/listen-ports: '[{"HTTP": 80}]'
+    alb.ingress.kubernetes.io/scheme: internet-facing
   hosts:
     - host: fastcampus.uniglot.dev
       paths:
